@@ -11,15 +11,14 @@ export const deployContract = async (
 ) => {
   let deployedContractAddress = utils.getCreate2Address(deployerAddress, salt, utils.keccak256(deployTxData));
 
-  let code = await deployerContract.provider.getCode(deployedContractAddress);
-  console.log("Code", code);
   let balance = await deployerContract.provider.getBalance(deployedContractAddress);
   console.log("Balance", utils.formatEther(balance));
 
-  await (await deployerContract.deploy(deployTxData, salt)).wait();
+  // Gas estimation must be maid manually
+  await deployerContract.deploy(deployTxData, salt, { gasLimit: 1000000 });
 
-  code = await deployerContract.provider.getCode(deployedContractAddress);
-  console.log("Code", code);
+  // code = await deployerContract.provider.getCode(deployedContractAddress);
+  // console.log("Code", code);
   balance = await deployerContract.provider.getBalance(deployedContractAddress);
   console.log("Balance", utils.formatEther(balance));
 

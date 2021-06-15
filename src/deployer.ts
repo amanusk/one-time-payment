@@ -46,15 +46,13 @@ export const deployDeployer = async (admin: Signer) => {
   if (!code || code === "0x" || code === "0x0") {
     console.log("No deployer detected, deploying deployer");
     // first send funds to the deployer deployer address
-    await (
-      await admin.sendTransaction({
-        to: deployerDeployerAddress,
-        value: deployerAmount,
-      })
-    ).wait();
+    await admin.sendTransaction({
+      to: deployerDeployerAddress,
+      value: deployerAmount,
+    });
 
     // now execute the deployer transaction
-    await (await admin.provider!.sendTransaction(deployerRawTransaction)).wait();
+    await admin.provider!.sendTransaction(deployerRawTransaction);
   }
 
   return new Contract(deployerAddress, deployerABI, admin);

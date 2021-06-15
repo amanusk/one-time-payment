@@ -18,7 +18,7 @@ describe("Create2 OneTimePay", () => {
   //   console.log("Deployer contract address", deployerContract.address);
   // });
   describe("Pay", async () => {
-    it("Should deploy the otp contract to a known address", async () => {
+    it.only("Should deploy the otp contract to a known address", async () => {
       const [deployer, payer, payee] = await ethers.getSigners();
       deployerContract = await deployDeployer(deployer);
       console.log("Deployer contract address", deployerContract.address);
@@ -52,8 +52,6 @@ describe("Create2 OneTimePay", () => {
 
         console.log("OTP address", deployedAddress);
         if (deployedAddress) {
-          let code = await ethers.provider.getCode(deployedAddress);
-          console.log("Code", code);
           let payeeBalanceAfter = await ethers.provider.getBalance(payee.address);
           console.log("Payee Balance after", ethers.utils.formatEther(payeeBalanceAfter));
           let otpBalanceAfter = await ethers.provider.getBalance(deployedAddress);
