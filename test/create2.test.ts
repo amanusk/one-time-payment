@@ -9,7 +9,7 @@ import { Contract, ContractFactory } from "ethers";
 chai.use(solidity);
 const { expect } = chai;
 
-describe("OneTimePay", () => {
+describe("Create2 OneTimePay", () => {
   let deployerContract: Contract;
 
   // beforeEach(async () => {
@@ -25,7 +25,8 @@ describe("OneTimePay", () => {
 
       let nonce = await deployer.getTransactionCount();
       console.log("Current nonce", nonce);
-      const otpFactory = new OneTimePay__factory(deployer);
+      //const otpFactory = new OneTimePay__factory(deployer);
+      const otpFactory = await ethers.getContractFactory("OneTimePay");
       const deployTx = otpFactory.getDeployTransaction(payee.address);
       if (deployTx.data) {
         let otpAddress = ethers.utils.getCreate2Address(

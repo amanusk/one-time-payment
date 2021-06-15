@@ -8,8 +8,10 @@ import { HardhatUserConfig } from "hardhat/types";
 import { NetworkUserConfig } from "hardhat/types";
 
 import "@nomiclabs/hardhat-waffle";
-import "hardhat-typechain";
+import "@typechain/hardhat";
 import "hardhat-gas-reporter";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-etherscan";
 import path from "path";
 import fs from "fs";
