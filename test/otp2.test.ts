@@ -18,7 +18,7 @@ describe("Create2 OneTimePay", () => {
   //   console.log("Deployer contract address", deployerContract.address);
   // });
   describe("Pay", async () => {
-    it.only("Should deploy the otp contract to a known address", async () => {
+    it("Should deploy the otp contract to a known address", async () => {
       const [deployer, payer, payee] = await ethers.getSigners();
       deployerContract = await deployDeployer(deployer);
       console.log("Deployer contract address", deployerContract.address);
